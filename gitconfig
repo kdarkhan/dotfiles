@@ -1,0 +1,26 @@
+[user]
+	email = darkhanu@gmail.com
+	name = Darkhan Kubigenov
+[push]
+	default = matching
+[branch]
+	autosetuprebase = always
+[credential]
+	helper = cache --timeout=3600
+[merge]
+	tool = kdiff3
+[alias]
+    dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f" 
+    co = checkout
+    ci = checkin
+[diff]
+	# Use better, descriptive initials (c, i, w) instead of a/b.
+	mnemonicPrefix = true
+	# Show renames/moves as such
+	renames = true
+	# When using --word-diff, assume --word-diff-regex=.
+	wordRegex = .
+	# Display submodule-related information (commit listings)
+	submodule = log
+[url "https://"]
+    insteadOf = git://
