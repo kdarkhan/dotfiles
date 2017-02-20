@@ -38,7 +38,7 @@ if has("unix")
         " echo 'hello osx'
         Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer', 'dir': '~/.vim/osx-vim-ycm'}
     elseif s:uname =~ "Linux"
-        Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer', 'dir': '~/.vim/linux-vim-ycm'}
+        Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-libclang', 'dir': '~/.vim/linux-vim-ycm'}
         " echo 'hello linux'
     endif
 endif
@@ -52,8 +52,8 @@ set number
 
 set encoding=utf-8
 
-set tabstop=4 shiftwidth=4
-set expandtab
+"set tabstop=4 shiftwidth=4
+" set expandtab
 set backspace=indent,eol,start
 
 set hlsearch
