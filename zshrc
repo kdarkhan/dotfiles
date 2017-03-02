@@ -36,6 +36,8 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 
    alias sftp='/usr/local/bin/sftp'
    export NODE_OS_HOME=${HOME}/node-osx-home
+   export GOPATH=$HOME/osxgopath
+   export PATH=$GOPATH/bin:$PATH
    export PATH=${HOME}/bin:$PATH
    export HISTFILE=$HOME/.config/zshhist-osx
    alias emacs='HOME=~/.config/osx-spacemacs-home /Applications/Emacs.app/Contents/MacOS/Emacs'

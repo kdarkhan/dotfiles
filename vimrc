@@ -205,3 +205,6 @@ let g:tex_conceal = ""
 let g:tex_fast = "bMpr"
 let g:tex_fold_enabled=0
 let g:rainbow_active = 1
+
+packadd! matchit
+
