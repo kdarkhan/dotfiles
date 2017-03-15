@@ -18,17 +18,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 bindkey '^R' history-incremental-search-backward
 
-export VISUAL=vim
-export EDITOR=$VISUAL
-
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
    # echo "You are running Linux"
-
-   export NODE_OS_HOME=${HOME}/node-linux-home
-   export GOPATH=$HOME/gopath
-   export PATH=$GOPATH/bin:$PATH
-   export HISTFILE=$HOME/.config/zshhist-linux
    alias emacs='HOME=~/.config/linux-spacemacs-home emacs'
 
 elif [[ "$unamestr" == 'Darwin' ]]; then
@@ -44,8 +36,6 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 else
    echo "Could not detect your OS"
 fi
-
-export PATH=${NODE_OS_HOME}/bin:$PATH
 
 HISTSIZE=5000
 SAVEHIST=5000
