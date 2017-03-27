@@ -22,17 +22,19 @@ unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
    # echo "You are running Linux"
    alias emacs='HOME=~/.config/linux-spacemacs-home emacs'
+   HISTFILE=$HOME/.config/zshhist-linux
 
 elif [[ "$unamestr" == 'Darwin' ]]; then
    # echo "You are running OSX"
 
    alias sftp='/usr/local/bin/sftp'
-   export NODE_OS_HOME=${HOME}/node-osx-home
-   export GOPATH=$HOME/osxgopath
+   # export NODE_OS_HOME=${HOME}/node-osx-home
+   # export GOPATH=$HOME/osxgopath
    export PATH=$GOPATH/bin:$PATH
    export PATH=${HOME}/bin:$PATH
-   export HISTFILE=$HOME/.config/zshhist-osx
    alias emacs='HOME=~/.config/osx-spacemacs-home /Applications/Emacs.app/Contents/MacOS/Emacs'
+   alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+   HISTFILE=$HOME/.config/zshhist-osx
 else
    echo "Could not detect your OS"
 fi
