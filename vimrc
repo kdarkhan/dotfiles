@@ -167,6 +167,9 @@ autocmd Filetype scala setlocal tabstop=2 shiftwidth=2
 autocmd Filetype coffee setlocal tabstop=2 shiftwidth=2
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4
 
+" disable edits on readonly file
+autocmd BufRead * let &l:modifiable = !&readonly
+
 " remember cursor position
 augroup resCur
   autocmd!
