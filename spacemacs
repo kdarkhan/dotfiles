@@ -33,7 +33,6 @@ values."
    '(
      html
      python
-     octave
      markdown
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
