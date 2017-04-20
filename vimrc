@@ -161,11 +161,8 @@ nmap <leader>la :VimtexCompile<cr>
 " enable spell check for latex files
 autocmd FileType tex setlocal spell spelllang=en_us complete+=k
 
-autocmd Filetype html setlocal tabstop=2 shiftwidth=2
-autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4
-autocmd Filetype scala setlocal tabstop=2 shiftwidth=2
-autocmd Filetype coffee setlocal tabstop=2 shiftwidth=2
-autocmd Filetype python setlocal tabstop=4 shiftwidth=4
+" indent settings are handled by editorconfig now
+" autocmd Filetype html setlocal tabstop=2 shiftwidth=2
 
 " disable edits on readonly file
 autocmd BufRead * let &l:modifiable = !&readonly
