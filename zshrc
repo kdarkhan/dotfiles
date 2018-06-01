@@ -1,4 +1,3 @@
-
 #
 # Executes commands at the start of an interactive session.
 #
@@ -11,35 +10,33 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+zstyle :compinstall filename '/home/monstar/.zshrc'
 
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory autocd notify
 bindkey -v
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 bindkey '^R' history-incremental-search-backward
 
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-  # echo "You are running Linux"
-  HISTFILE=$HOME/.config/zshhist-linux
-  if [[ -s "$HOME/.customrc" ]]; then
-    source "$HOME/.customrc"
-  fi
 
-elif [[ "$unamestr" == 'Darwin' ]]; then
-  # echo "You are running OSX"
+alias vim=nvim
+# alias sudo='sudo '
+export EDITOR=nvim
 
-  alias sftp='/usr/local/bin/sftp'
-  # export NODE_OS_HOME=${HOME}/node-osx-home
-  # export GOPATH=$HOME/osxgopath
-  export PATH=$GOPATH/bin:$PATH
-  export PATH=${HOME}/bin:$PATH
-  alias emacs='HOME=~/.config/osx-spacemacs-home /Applications/Emacs.app/Contents/MacOS/Emacs'
-  alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-  HISTFILE=$HOME/.config/zshhist-osx
-else
-  echo "Could not detect your OS"
+export _JAVA_AWT_WM_NONREPARENTING=1
+export PATH=$HOME/go/bin:$PATH
+
+# export GDK_DPI_SCALE=1.0
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+	# XKB_DEFAULT_LAYOUT=us,ru XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle exec sway
+	# awesome
+	# startx
+	startx -- -keeptty -nolisten tcp &>! $HOME/.xorg.log
 fi
-
-HISTSIZE=5000
-SAVEHIST=5000

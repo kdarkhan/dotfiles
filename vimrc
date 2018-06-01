@@ -2,7 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off
 
 if empty(glob("~/.vim/autoload/plug.vim"))
-    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+    execute '!curl --create-dirs -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -18,31 +18,13 @@ Plug 'ervandew/supertab'
 Plug 'lervag/vimtex'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
 Plug 'jiangmiao/auto-pairs'
 Plug 'justinmk/vim-sneak'
 Plug 'tomtom/tcomment_vim'
 Plug 'lazywei/vim-matlab'
-" Plugin 'SirVer/ultisnips'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'luochen1990/rainbow'
-" Plugin 'flazz/vim-colorschemes'
-" Plugin 'easymotion/vim-easymotion'
-" Plugin 'rust-lang/rust.vim'
-
-" On my laptop I have osx and linux dual boot with shared /home (or osx /Users) partitions.
-" Since YouCompleteMe uses compiled code, it cannot be used on both machines.
-" I use separate directory for each os
-if has("unix")
-    let s:uname = system("uname -s")
-    if s:uname =~ "Darwin"
-        " echo 'hello osx'
-        Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer', 'dir': '~/.vim/osx-vim-ycm'}
-    elseif s:uname =~ "Linux"
-        Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-libclang', 'dir': '~/.vim/linux-vim-ycm'}
-        " echo 'hello linux'
-    endif
-endif
-
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}
 call plug#end()
 
 
@@ -52,6 +34,7 @@ set number
 
 set encoding=utf-8
 
+set tabstop=4
 "set tabstop=4 shiftwidth=4
 " set expandtab
 set backspace=indent,eol,start
@@ -157,6 +140,8 @@ let mapleader = "\<Space>"
 
 nmap <leader>ft :NERDTreeToggle<cr>
 nmap <leader>la :VimtexCompile<cr>
+nmap <leader>m :make<cr>
+nmap <leader>j :%!python -m json.tool<CR>
 
 " enable spell check for latex files
 autocmd FileType tex setlocal spell spelllang=en_us complete+=k
@@ -205,6 +190,3 @@ let g:tex_conceal = ""
 let g:tex_fast = "bMpr"
 let g:tex_fold_enabled=0
 let g:rainbow_active = 1
-
-packadd! matchit
-

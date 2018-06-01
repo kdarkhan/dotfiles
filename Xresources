@@ -1,0 +1,59 @@
+!Xft.dpi: 151.0
+Xft.dpi: 283.0
+
+XTerm.vt100.faceName: SourceCodePro:size=12:antialias=true
+! XTerm.vt100.font: 7x13
+
+#include "/home/monstar/work/colors/Afterglow.xrdb"
+XTerm*color0:      Ansi_0_Color
+XTerm*color1:      Ansi_1_Color
+XTerm*color2:      Ansi_2_Color
+XTerm*color3:      Ansi_3_Color
+XTerm*color4:      Ansi_4_Color
+XTerm*color5:      Ansi_5_Color
+XTerm*color6:      Ansi_6_Color
+XTerm*color7:      Ansi_7_Color
+XTerm*color8:      Ansi_8_Color
+XTerm*color9:      Ansi_9_Color
+XTerm*color10:     Ansi_10_Color
+XTerm*color11:     Ansi_11_Color
+XTerm*color12:     Ansi_12_Color
+XTerm*color13:     Ansi_13_Color
+XTerm*color14:     Ansi_14_Color
+XTerm*color15:     Ansi_15_Color
+XTerm*colorBD:     Bold_Color
+XTerm*colorIT:     Italic_Color
+XTerm*colorUL:     Underline_Color
+XTerm*foreground:  Foreground_Color
+XTerm*background:  Background_Color
+XTerm*cursorColor: Cursor_Color
+
+URxvt.color0:      Ansi_0_Color
+URxvt.color1:      Ansi_1_Color
+URxvt.color2:      Ansi_2_Color
+URxvt.color3:      Ansi_3_Color
+URxvt.color4:      Ansi_4_Color
+URxvt.color5:      Ansi_5_Color
+URxvt.color6:      Ansi_6_Color
+URxvt.color7:      Ansi_7_Color
+URxvt.color8:      Ansi_8_Color
+URxvt.color9:      Ansi_9_Color
+URxvt.color10:     Ansi_10_Color
+URxvt.color11:     Ansi_11_Color
+URxvt.color12:     Ansi_12_Color
+URxvt.color13:     Ansi_13_Color
+URxvt.color14:     Ansi_14_Color
+URxvt.color15:     Ansi_15_Color
+URxvt*colorBD:     Bold_Color
+URxvt*colorIT:     Italic_Color
+URxvt*colorUL:     Underline_Color
+URxvt*foreground:  Foreground_Color
+URxvt*background:  Background_Color
+URxvt*cursorColor: Cursor_Color
+URxvt.font:         xft:Source Code Pro:pixelsize=22:antialias=true
+URxvt.boldFont:     xft:Source Code Pro:Bold:pixelsize=22:antialias=true
+URxvt*saveLines : 20000
+
+URxvt.perl-ext-common: default,matcher,tabbed
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1

@@ -24,3 +24,5 @@
 	submodule = log
 [url "https://"]
     insteadOf = git://
+[magit]
+	hideCampaign = true

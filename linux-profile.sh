@@ -8,5 +8,3 @@ export NODE_OS_HOME=${HOME}/node-linux-home
 export PATH=${NODE_OS_HOME}/bin:$PATH
 export GOPATH=$HOME/gopath
 export PATH=$GOPATH/bin:$PATH
-export HISTFILE=$HOME/.config/zshhist-linux
-
