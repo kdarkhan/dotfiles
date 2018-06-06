@@ -25,12 +25,12 @@ bindkey '^ ' autosuggest-accept
 bindkey '^R' history-incremental-search-backward
 
 
-alias vim=nvim
-# alias sudo='sudo '
+alias open=xdg-open
 export EDITOR=nvim
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=$HOME/go/bin:$PATH
+prompt skwp
 
 # export GDK_DPI_SCALE=1.0
 
@@ -38,5 +38,5 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 	# XKB_DEFAULT_LAYOUT=us,ru XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle exec sway
 	# awesome
 	# startx
-	startx -- -keeptty -nolisten tcp &>! $HOME/.xorg.log
+	startx -- -dpi 287 -keeptty -nolisten tcp &>! $HOME/.xorg.log
 fi

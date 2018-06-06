@@ -59,7 +59,7 @@ run_once({
     "unclutter -root",
     "nm-applet",
     "/home/monstar/scripts/hotplug_monitor.sh",
-    "compton -b"
+    "compton --backend glx --paint-on-overlay --vsync opengl-swc -b",
 }) -- entries must be comma-separated
 -- }}}
 
@@ -84,12 +84,12 @@ local altkey       = "Mod1"
 local terminal     = "termite"
 local editor       = os.getenv("EDITOR") or "nano"
 local gui_editor   = "termite -e nvim"
-local browser      = "chromium"
-local guieditor    = "atom"
+local browser      = "firefox"
+local guieditor    = "termite -e nvim"
 local scrlocker    = "xlock"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5", "6"}
+awful.util.tagnames = { "main", "web", "dev", "chat", "spot", "misc"}
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
@@ -231,9 +231,11 @@ root.buttons(my_table.join(
 globalkeys = my_table.join(
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "p", function() os.execute("screenshot") end,
-              {description = "take a screenshot", group = "hotkeys"}),
+    -- awful.key({ altkey }, "p", function() os.execute("scrot") end,
+    --          {description = "take a screenshot", group = "hotkeys"}),
 
+    awful.key({        }, "XF86Launch0", function() os.execute("scrot") end,
+              {description = "take a screenshot", group = "hotkeys"}),
     -- X screen locker
     awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,
               {description = "lock screen", group = "hotkeys"}),
@@ -302,7 +304,7 @@ globalkeys = my_table.join(
               {description = "swap with next client by index", group = "client"}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
+    awful.key({ modkey,           }, "p", function () awful.screen.focus_relative( 1) end,
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
@@ -485,8 +487,8 @@ globalkeys = my_table.join(
               {description = "copy gtk to terminal", group = "hotkeys"}),
 
     -- User programs
-    awful.key({ modkey }, "q", function () awful.spawn(browser) end,
-              {description = "run browser", group = "launcher"}),
+    --awful.key({ modkey }, "q", function () awful.spawn(browser) end,
+    --          {description = "run browser", group = "launcher"}),
     awful.key({ modkey }, "a", function () awful.spawn(guieditor) end,
               {description = "run gui editor", group = "launcher"}),
     awful.key({ modkey }, "y", function () awful.spawn("/home/monstar/scripts/hotplug_monitor.sh") end,
@@ -510,7 +512,8 @@ globalkeys = my_table.join(
               {description = "run prompt", group = "launcher"}),
 
     -- Rofi
-    awful.key({ modkey,         }, "i", function () awful.util.spawn("rofi -show run") end),
+    -- awful.key({ modkey,         }, "i", function () awful.util.spawn("rofi -show run") end),
+    awful.key({ modkey,         }, "i", function () awful.spawn("rofi -show run") end),
 
     awful.key({ modkey }, "x",
               function ()
@@ -534,7 +537,7 @@ clientkeys = my_table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ modkey,           }, "q",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
@@ -544,14 +547,14 @@ clientkeys = my_table.join(
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
-    awful.key({ modkey,           }, "n",
+    awful.key({ modkey,           }, "m",
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end ,
         {description = "minimize", group = "client"}),
-    awful.key({ modkey,           }, "m",
+    awful.key({ modkey,           }, "n",
         function (c)
             c.maximized = not c.maximized
             c:raise()
@@ -661,11 +664,23 @@ awful.rules.rules = {
       properties = { titlebars_enabled = true } },
 
     -- Set Firefox to always map on the first tag on screen 1.
-    { rule = { class = "Firefox" },
-      properties = { screen = 1, tag = awful.util.tagnames[1] } },
+    -- { rule = { class = "Firefox" },
+    --  properties = { screen = 1, tag = "web" } },
+
+    { rule = { class = "Chromium" },
+      properties = { tag = "web" } },
+
+    { rule = { class = "jetbrains-idea" },
+      properties = { tag = "dev" } },
+
+    { rule = { class = "Emacs" },
+      properties = { screen = 1, tag = "dev" } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
+
+    { rule = { class = "Steam", },
+          properties = { border_size =  0, size_hints_honor = false} },
 }
 -- }}}
 
@@ -734,12 +749,14 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
+--[[
 client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
         and awful.client.focus.filter(c) then
         client.focus = c
     end
 end)
+--]]
 
 -- No border for maximized clients
 function border_adjust(c)
