@@ -1,3 +1,5 @@
 set ignorecase
 set smartcase
 set surround
+nnoremap gn :action GotoNextError<CR>
+nnoremap gp :action GotoPreviousError<CR>

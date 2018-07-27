@@ -190,3 +190,6 @@ let g:tex_conceal = ""
 let g:tex_fast = "bMpr"
 let g:tex_fold_enabled=0
 let g:rainbow_active = 1
+
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
