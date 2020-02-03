@@ -27,7 +27,7 @@ Plug 'morhetz/gruvbox'
 if osname == 'Darwin'
   Plug '/usr/local/opt/fzf'
 endif
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' " should be brew installed on macos
 call plug#end()
 
 filetype plugin indent on
@@ -47,6 +47,10 @@ set ignorecase
 set smartcase
 syntax on
 set mouse=a
+
+if exists('&inccommand')
+  set inccommand=split
+endif
 
 set ruler
 set showcmd
@@ -94,7 +98,7 @@ let mapleader = "\<Space>"
 
 nmap <leader>ft :NERDTreeToggle<CR>
 nmap <leader>m :make<CR>
-nmap <leader>j :%!python -m json.tool<CR>
+nmap <leader>j :%!python3 -m json.tool<CR>
 
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
