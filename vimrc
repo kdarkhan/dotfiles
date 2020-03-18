@@ -31,6 +31,7 @@ Plug 'junegunn/fzf.vim' " should be brew installed on macos
 call plug#end()
 
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 
 set number
 
@@ -97,6 +98,8 @@ let g:camelchar = "A-Z0-9.,;:{([`'\""
 let mapleader = "\<Space>"
 
 nmap <leader>ft :NERDTreeToggle<CR>
+nmap <leader>ff :NERDTreeFind<CR>
+nmap <leader>q :q!<CR>
 nmap <leader>m :make<CR>
 nmap <leader>j :%!python3 -m json.tool<CR>
 
