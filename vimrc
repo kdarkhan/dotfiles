@@ -37,8 +37,8 @@ set number
 
 set encoding=utf-8
 
-set tabstop=2
-"set tabstop=4 shiftwidth=4
+" set tabstop=2
+set tabstop=4 shiftwidth=4
 " set expandtab
 set backspace=indent,eol,start
 
@@ -64,6 +64,26 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 set laststatus=2
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='bubblegum'
+let g:airline_mode_map = {
+      \ '__'     : '-',
+      \ 'c'      : 'C',
+      \ 'i'      : 'I',
+      \ 'ic'     : 'I',
+      \ 'ix'     : 'I',
+      \ 'n'      : 'N',
+      \ 'multi'  : 'M',
+      \ 'ni'     : 'N',
+      \ 'no'     : 'N',
+      \ 'R'      : 'R',
+      \ 'Rv'     : 'R',
+      \ 's'      : 'S',
+      \ 'S'      : 'S',
+      \ ''     : 'S',
+      \ 't'      : 'T',
+      \ 'v'      : 'V',
+      \ 'V'      : 'V',
+      \ ''     : 'V',
+      \ }
 
 let g:enable_bold_font = 1
 
