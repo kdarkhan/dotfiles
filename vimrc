@@ -2,10 +2,8 @@ set nocompatible              " be iMproved, required
 filetype off
 
 if empty(glob("~/.vim/autoload/plug.vim"))
-    execute '!curl --create-dirs -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+  execute '!curl --create-dirs -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
-
-let g:osname = substitute(system('uname'), '\n', '', '')
 
 call plug#begin('~/.vim/plugged')
 
@@ -24,8 +22,8 @@ Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'morhetz/gruvbox'
-if osname == 'Darwin'
-  Plug '/usr/local/opt/fzf'
+if has('mac')
+  Plug '/usr/local/opt/fzf' " default location of fzf installed through brew
 endif
 Plug 'junegunn/fzf.vim' " should be brew installed on macos
 call plug#end()
@@ -51,6 +49,10 @@ set mouse=a
 
 if exists('&inccommand')
   set inccommand=split
+endif
+
+if exists('&jumpoptions')
+  set jumpoptions=stack
 endif
 
 set ruler
@@ -186,7 +188,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " NERDTree setup
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 " COC configs
 " if hidden is not set, TextEdit might fail.
