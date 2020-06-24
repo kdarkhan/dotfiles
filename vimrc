@@ -92,10 +92,14 @@ let g:enable_bold_font = 1
 " highlight current line
 set cursorline
 
-" show trainling whitespace
+" show whitespace
 " set listchars=tab:▸\ ,eol:¬,space:·
 set listchars=tab:▸\ ,space:·
 set list
+
+" highlight trailing whitespace
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 
 " ================ Completion =======================
 set wildmode=list:longest
@@ -156,7 +160,7 @@ augroup resCur
 augroup END
 
 " Cyrillic support
-"set keymap=russian-jcuken
+set keymap=russian-jcuken
 "set keymap=kazakh-jcuken
 
 set iminsert=0
