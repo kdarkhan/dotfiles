@@ -22,6 +22,8 @@ Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'morhetz/gruvbox'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 if has('mac')
   Plug '/usr/local/opt/fzf' " default location of fzf installed through brew
 endif
@@ -132,6 +134,10 @@ nmap <leader>j :%!python3 -m json.tool<CR>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
 nmap <leader>bd :bdelete<CR>
+nmap <leader>bb :Buffers<CR>
+
+nmap <leader>tn :tabnext<CR>
+nmap <leader>tp :tabprev<CR>
 
 nmap <leader>gb :Gblame<CR>
 nmap <leader>gs :Gstatus<CR>
@@ -175,6 +181,10 @@ let g:rainbow_active = 1
 
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
+
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
 set termguicolors
 let g:gruvbox_sign_column="bg0"
