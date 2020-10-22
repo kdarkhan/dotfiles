@@ -1,14 +1,44 @@
 {
-  "languageserver": {
-    "metals": {
-      "command": "metals-vim",
-      "rootPatterns": ["build.sbt"],
-      "filetypes": ["scala", "sbt"]
+    "languageserver": {
+        "metals": {
+            "command": "metals-vim",
+            "rootPatterns": [
+                "build.sbt"
+            ],
+            "filetypes": [
+                "scala",
+                "sbt"
+            ]
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod"
+            ],
+            "filetypes": [
+                "go"
+            ]
+        },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cc",
+                "cpp",
+                "c++",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
     },
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "filetypes": ["go"]
-    },
-  }
+    "python.formatting.provider": "yapf",
+    "snippets.snipmate.enable": false
 }
