@@ -25,3 +25,5 @@
 	submodule = log
 [magit]
 	hideCampaign = true
+[color]
+	ui = auto

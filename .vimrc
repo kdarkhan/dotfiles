@@ -131,8 +131,12 @@ let mapleader = "\<Space>"
 nmap <leader>ft :NERDTreeToggle<CR>
 nmap <leader>ff :NERDTreeFind<CR>
 nmap <leader>q :q!<CR>
-nmap <leader>m :make<CR>
-nmap <leader>j :%!python3 -m json.tool<CR>
+nmap <leader>fm :make<CR>
+nnoremap <leader>fj :%!python3 -m json.tool<CR>
+
+"Remove all trailing whitespace
+nnoremap <leader>tw :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
 
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
@@ -151,7 +155,7 @@ nmap <leader>gp :Gpush<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gw :Gwrite<CR>
 
-nnoremap <expr> <C-P> (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<CR>"
+nnoremap <C-P> :Files<CR>
 
 " enable spell check for latex files
 autocmd FileType tex setlocal spell spelllang=ru_ru complete+=k
@@ -348,3 +352,25 @@ nnoremap <silent> <leader>lk  :<C-u>CocPrev<CR>
 nnoremap <silent> <leader>lr  :<C-u>CocListResume<CR>
 
 nnoremap <silent> <leader>lh  :<C-u>CocCommand clangd.switchSourceHeader<CR>
+
+" Sync nerdtree window when switching files
+function s:sync_nerd_tree()
+    if &modifiable && !&diff && exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1
+        let buf = expand('%:p')
+        let root = g:NERDTree.ForCurrentTab().getRoot().path.str()
+        " ensure that the new file is not outside of root
+        " which is problematic for my setup because NERDTreeFind switches root
+        " to parent to include outside files.
+        if strlen(buf) > 0 && stridx(buf, root) == 0
+          try
+            NERDTreeFind
+            normal! zz
+            if bufname('%') =~# 'NERD_tree'
+              wincmd p
+            endif
+          endtry
+        endif
+    endif
+endfunction
+
+autocmd BufEnter * call s:sync_nerd_tree()

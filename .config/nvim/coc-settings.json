@@ -21,6 +21,7 @@
         },
         "ccls": {
             "command": "ccls",
+            "enable": false,
             "filetypes": [
                 "c",
                 "cc",

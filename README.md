@@ -1,8 +1,16 @@
 # Dotfiles
-Some of my config files used on my UHD Lenov Y50
-and FullHD desktop.
+Scripts for getting `Sway` on my laptop and
+`i3` on my desktop machine (Nvidia YAY).
 
-Using swaywm on the laptop and awesome on desktop (because sway does not support nvidia).
+BTW, I run Arch! 😀
 
-## Archlinux
-  * `Emacs` - install `ttf-symbola` and `adobe-source-code-pro-fonts` fonts.
+## Some of the tools used
+  * neovim
+  * kitty
+  * fish shell
+  * tmux
+  * redshift
+  * kbdd
+  * picom
+  * conky
+  * waybar
