@@ -56,7 +56,7 @@ bindsym $mod+q kill
 
 bindsym $mod+i exec "rofi -show combi -combi-modi drun,run -modi combi -theme gruvbox-dark-soft"
 
-bindsym $mod+Shift+l exec "./scripts/fuzzy-i3lock.sh"
+bindsym $mod+Shift+o exec "./scripts/fuzzy-i3lock.sh"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -69,22 +69,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# move focused window
-# bindsym $mod+Shift+h move left
-# bindsym $mod+Shift+j move down
-# bindsym $mod+Shift+k move up
-# bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
 bindsym $mod+s split h
@@ -206,6 +194,7 @@ bar {
     font pango:Cascadia Code Mono PL:style=Regular, Font Awesome 5 Free 9
     position top
     status_command i3status-rs .config/i3/status.toml
+    # height 17
     # separator_symbol "/"
 
     colors {

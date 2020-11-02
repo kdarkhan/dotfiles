@@ -24,6 +24,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'morhetz/gruvbox'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'ryanoasis/vim-devicons'
 
 if has('mac')
   Plug '/usr/local/opt/fzf' " default location of fzf installed through brew
@@ -152,10 +154,14 @@ nmap <leader>gc :Gcommit -v<CR>
 nmap <leader>ga :Git add -p<CR>
 nmap <leader>gm :Gcommit --amend<CR>
 nmap <leader>gp :Gpush<CR>
-nmap <leader>gd :Gdiff<CR>
+nmap <leader>gdd :Gdiff<CR>
+nmap <leader>gdu :diffupdate<CR>
+nmap <leader>gdp :diffput<CR>
+nmap <leader>gdg :diffget<CR>
 nmap <leader>gw :Gwrite<CR>
+nmap <leader>gr :Gread<CR>
 
-nnoremap <C-P> :Files<CR>
+nnoremap <expr> <C-P> (len(system('git rev-parse')) ? ':Files' : ':GFiles?')."\<CR>"
 
 " enable spell check for latex files
 autocmd FileType tex setlocal spell spelllang=ru_ru complete+=k
