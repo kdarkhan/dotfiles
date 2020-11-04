@@ -70,8 +70,10 @@ set linebreak
 " airline setup
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
 set laststatus=2
 let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#close_symbol = '-'
 " let g:airline_theme='bubblegum'
 let g:airline_mode_map = {
       \ '__'     : '-',
@@ -104,9 +106,6 @@ set cursorline
 set listchars=tab:▸\ ,space:·
 set list
 
-" highlight trailing whitespace
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 
 " ================ Completion =======================
 set wildmode=list:longest
@@ -161,7 +160,7 @@ nmap <leader>gdg :diffget<CR>
 nmap <leader>gw :Gwrite<CR>
 nmap <leader>gr :Gread<CR>
 
-nnoremap <expr> <C-P> (len(system('git rev-parse')) ? ':Files' : ':GFiles?')."\<CR>"
+nnoremap <expr> <C-P> (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<CR>"
 
 " enable spell check for latex files
 autocmd FileType tex setlocal spell spelllang=ru_ru complete+=k
@@ -199,17 +198,32 @@ let g:UltiSnipsExpandTrigger = "<nop>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
-set termguicolors
 let g:gruvbox_sign_column="bg0"
-colorscheme gruvbox
-"highlight SignColumn ctermbg=black
-"highlight SignColumn ctermfg=223 ctermbg=235 guifg=#ebdbb2 guibg=#282828
-"highlight SignColumn ctermbg=235 guibg=#282828
-"hi Search cterm=NONE ctermfg=yellow ctermbg=grey
-" colorscheme peachpuff
 
-" Configuration for vim-scala
-"au BufRead,BufNewFile *.sbt set filetype=scala
+
+" highlight trailing whitespace
+" autocmd ColorScheme * highlight ExtraWhitespace ctermbg=gray guibg=gray
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+  " to get transparent background
+  colorscheme gruvbox
+  " whitespace highlighting is wrong otherwise
+  hi! Whitespace ctermfg=gray guifg=gray
+  " disable background to use transparency supported by the terminal
+  hi! Normal guibg=NONE
+  hi! NonText guibg=NONE guifg=gray
+  hi! SignColumn guibg=NONE
+  hi! CocErrorSign guibg=NONE guifg=red
+  let g:gitgutter_set_sign_backgrounds = 1
+else
+  colorscheme gruvbox
+endif
+
+
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " NERDTree setup

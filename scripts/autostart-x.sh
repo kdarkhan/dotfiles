@@ -4,10 +4,10 @@ pgrep redshift || redshift-gtk -l "$COORDS" -c .config/redshift/redshift.conf  &
 
 pgrep nm-applet || nm-applet &
 
-pgrep picom || picom &
+pgrep picom || picom --experimental-backends &
 
 pgrep kbdd || kbdd &
 
 # pgrep conky || conky &
 
-xset r rate 250 40
+# xset r rate 250 40

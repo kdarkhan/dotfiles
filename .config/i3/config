@@ -27,7 +27,8 @@ font pango:monospace 8
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- ./scripts/fuzzy-i3lock.sh
 
-exec_always --no-startup-id feh --bg-scale ./Pictures/wallpapers/world-map-shiny-crop.jpg
+# exec_always --no-startup-id feh --bg-scale ./Pictures/autumn.png
+exec_always --no-startup-id feh --bg-scale ./Pictures/wallpapers/robot_2.jpg
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -41,6 +42,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set 'Master' 5%+ && $re
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set 'Master' 5%- && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -165,22 +170,33 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
+        bindsym h resize shrink width 20 px or 20 ppt
+        bindsym Shift+h resize grow left 20 px or 20 ppt
+        bindsym l resize grow right 20 px or 20 ppt
+        bindsym Shift+l resize shrink left 20 px or 20 ppt
+        bindsym k resize shrink down 20 px or 20 ppt
+        bindsym Shift+k resize grow up 20 px or 20 ppt
+        bindsym j resize grow down 20 px or 20 ppt
+        bindsym Shift+j resize shrink up 20 px or 20 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym $mod+h focus left
+        bindsym $mod+j focus down
+        bindsym $mod+k focus up
+        bindsym $mod+l focus right
+
+        bindsym w move up 20 px
+        bindsym a move left 20 px
+        bindsym s move down 20 px
+        bindsym d move right 20 px
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
+
+        bindsym $mod+Tab focus right
 }
+
 bindsym $mod+r mode "resize"
 
 # passthrough mode for temporarily disabling shortcuts
@@ -194,13 +210,15 @@ bar {
     font pango:Cascadia Code Mono PL:style=Regular, Font Awesome 5 Free 9
     position top
     status_command i3status-rs .config/i3/status.toml
-    # height 17
+    i3bar_command i3bar --transparency
+
+    # height 19
     # separator_symbol "/"
 
     colors {
-        background #262626
-        statusline #ffffff
-        separator #666666
+        background #26262699
+        statusline #ffffff00
+        separator #66666600
 
         # focused_workspace  #4c7899 #339966 #fff3b0
         focused_workspace  #4c7899 #336666 #fff3b0
@@ -222,3 +240,5 @@ for_window [class=".*"] border pixel 0
 # for_window [class="Gimp-2.10"] border pixel 1
 
 focus_on_window_activation focus
+
+gaps inner 7
