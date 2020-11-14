@@ -178,11 +178,12 @@ augroup resCur
 augroup END
 
 " Cyrillic support
-set keymap=russian-jcuken
-"set keymap=kazakh-jcuken
-
+set keymap=russian-jcukenwin
 set iminsert=0
-set imsearch=0
+"set keymap=kazakh-jcuken
+" set imsearch=0
+
+
 " highlight lCursor guifg=NONE guibg=Cyan
 
 
