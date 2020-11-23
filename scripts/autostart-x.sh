@@ -4,7 +4,7 @@ pgrep redshift || redshift-gtk -l "$COORDS" -c .config/redshift/redshift.conf  &
 
 pgrep nm-applet || nm-applet &
 
-pgrep picom || picom --experimental-backends &
+pgrep picom || picom --backend=glx --experimental-backends &
 
 pgrep kbdd || kbdd &
 
