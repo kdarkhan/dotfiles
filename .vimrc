@@ -32,6 +32,8 @@ else
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'ryanoasis/vim-devicons'
   Plug 'kdarkhan/vim-snippets'
+  Plug 'jpalardy/vim-slime', {'branch': 'main'}
+
 
   if has('mac')
     Plug '/usr/local/opt/fzf' " default location of fzf installed through brew
@@ -103,6 +105,7 @@ nnoremap <leader>fj :%!python3 -m json.tool<cr>
 
 "Remove all trailing whitespace
 nnoremap <leader>fw :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><cr>
+nnoremap <leader>fc :let @+=expand("%:p")<CR>
 
 nmap <leader>bn :bnext<cr>
 nmap <leader>bp :bprev<cr>
@@ -229,6 +232,7 @@ if !empty(glob("~/.vim/plugged/"))
     autocmd!
 
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    autocmd BufEnter * call s:sync_nerd_tree()
     " autocmd StdinReadPre * let s:std_in=1
     " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
   augroup end
@@ -442,4 +446,7 @@ if !empty(glob("~/.vim/plugged/"))
   nmap <C-p> :Files<cr>
   nmap <leader>gf :GFiles<cr>
   nmap <leader>go :GFiles?<cr>
+
+  let g:slime_target = "tmux"
+  let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 endif
